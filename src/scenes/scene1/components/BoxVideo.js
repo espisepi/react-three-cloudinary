@@ -11,11 +11,12 @@ export default function BoxVideo({ id='video' }) {
 
     const video = useMemo(()=>(document.getElementById( id )),[id]);
 
-    const [analyser, dataAnalyser, updateAnalyser] = useAnalyser(video);
-
+    const analyser = useAnalyser(video);
     useFrame(()=>{
-        updateAnalyser();
-        // console.log(dataAnalyser);
+        if(analyser){
+            // analyser.update();
+            console.log(analyser.getUpdateLowerMax());
+        }
     })
 
     console.log('holi');
