@@ -60,6 +60,7 @@ export function BoxShader({}) {
             {/* <meshBasicMaterial map={dispTexture} /> */}
             <fade
                 attach="material"
+                side={THREE.DoubleSide}
                 texture={texture1}
                 texture2={texture2}
                 disp={dispTexture}
