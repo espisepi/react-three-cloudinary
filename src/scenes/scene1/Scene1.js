@@ -18,7 +18,6 @@ export function Scene1() {
     return (
         <>
         <ambientLight />
-        {/* <Box material-color="red" /> */}
         <BoxVideo />
         <OrbitControls />
         </>

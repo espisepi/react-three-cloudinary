@@ -23,12 +23,12 @@ function ImageAndVideo() {
 
   },[]);
 
-  const [analyser, dataAnalyser, updateAnalyser] = useAnalyser(video);
-  console.log(analyser)
-  console.log(dataAnalyser)
+  // const [analyser, dataAnalyser, updateAnalyser] = useAnalyser(video);
+  // console.log(analyser)
+  // console.log(dataAnalyser)
 
-  window.analyser = analyser;
-  window.dataAnalyser = dataAnalyser;
+  // window.analyser = analyser;
+  // window.dataAnalyser = dataAnalyser;
   
   // setInterval(()=>{
   //   if(analyser){
@@ -68,7 +68,7 @@ function App() {
          
       <ImageAndVideo />
 
-<h1>Sepinaco</h1>
+      <h1>Sepinaco</h1>
       <Scene1Canvas />
 
     </div>
