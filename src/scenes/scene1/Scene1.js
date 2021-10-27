@@ -3,7 +3,8 @@ import React from 'react';
 import { Canvas, useFrame } from '@react-three/fiber'
 import { OrbitControls, Box } from '@react-three/drei';
 
-import BoxVideo from './components/BoxVideo';
+import { BoxVideo, BoxShader } from './components/BoxCustom';
+import { Suspense } from 'react';
 
 
 const canvasStyleDefault = {
@@ -18,7 +19,8 @@ export function Scene1() {
     return (
         <>
         <ambientLight />
-        <BoxVideo />
+        {/* <BoxVideo /> */}
+        <BoxShader />
         <OrbitControls />
         </>
     )
@@ -27,7 +29,9 @@ export function Scene1() {
 export function Scene1Canvas({ canvasStyle=canvasStyleDefault }) {
     return (
         <Canvas style={canvasStyle} >
-            <Scene1/>
+            <Suspense fallback={<Box material-color='red' material-wireframe='true'/>}>
+                <Scene1/>
+            </Suspense>
         </Canvas>
     )
 }
