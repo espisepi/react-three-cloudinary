@@ -3,7 +3,7 @@ import React from 'react';
 import { Canvas, useFrame } from '@react-three/fiber'
 import { OrbitControls, Box } from '@react-three/drei';
 
-import { BoxVideo, BoxShader } from './components/BoxCustom';
+import { BoxVideo, BoxShader, VideoPoint } from './components/BoxCustom';
 import { Suspense } from 'react';
 
 
@@ -20,7 +20,8 @@ export function Scene1() {
         <>
         <ambientLight />
         {/* <BoxVideo /> */}
-        <BoxShader />
+        {/* <BoxShader /> */}
+        <VideoPoint />
         <OrbitControls />
         </>
     )
