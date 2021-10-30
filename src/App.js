@@ -16,7 +16,8 @@ const dataMusic = [
   {
     url: 'https://video-dl-esp.herokuapp.com/video/video?url=https://www.youtube.com/watch?v=BgcFGo7X3_M&list=PLbF25hg0V3wBCMH8pvbGOUw5fxp0pbrLA&index=71',
   },
-]
+];
+
 
 function App() {
 
@@ -27,35 +28,16 @@ function App() {
     setIndex((v)=>(newIndex));
   },[index]);
 
-  console.log(dataMusic[index])
+  console.log(dataMusic[index]);
+
+
+  
 
   return (
     <div className="App">
-      <h1>HOLI</h1>
 
-      <CloudinaryContext cloudName="sepinaco">
-        <div>
-          <Image publicId="sample" width="50" />
-        </div>
-        <Image id="image" publicId="sample" width="0.5" />
+      <video id="video" src={dataMusic[index].url} controls={true} crossOrigin="anonymous"></video>
 
-        {/* <Video id="video" publicId="samples/sea-turtle" controls={true} width={320} height={240} crossOrigin="anonymous" >
-        </Video> */}
-
-        {/* <video id="video" src="video.mp4" controls={true}></video> */}
-
-        {/* <video id="video" src="https://video-dl-esp.herokuapp.com/video/video?url=https://www.youtube.com/watch?v=96h97kNEgXM" controls={true} crossOrigin="anonymous"></video> */}
-        <video id="video" src={dataMusic[index].url} controls={true} crossOrigin="anonymous"></video>
-
-        {/* <Video id="video" cloudName="demo" publicId="dog" controls="true" >
-          <Transformation width="0.4" angle="20" />
-          <Transformation overlay="cloudinary_icon_white" width="60" opacity="50" gravity="south_east" y="15" x="60" />
-        </Video> */}
-
-      </CloudinaryContext>
-
-
-      <h1>Sepinaco</h1>
       <Scene1Canvas />
 
       <button style={{position:'absolute', width:'100px', height:'100px'}} onClick={incrementIndex}>Cambiar cancion</button>
@@ -65,3 +47,29 @@ function App() {
 }
 
 export default App;
+
+
+
+
+
+
+
+      {/* <CloudinaryContext cloudName="sepinaco">
+        <div>
+          <Image publicId="sample" width="50" />
+        </div>
+        <Image id="image" publicId="sample" width="0.5" />
+
+        <Video id="video" publicId="samples/sea-turtle" controls={true} width={320} height={240} crossOrigin="anonymous" >
+        </Video>
+
+        <video id="video" src="video.mp4" controls={true}></video>
+
+        <video id="video" src="https://video-dl-esp.herokuapp.com/video/video?url=https://www.youtube.com/watch?v=96h97kNEgXM" controls={true} crossOrigin="anonymous"></video>
+
+        <Video id="video" cloudName="demo" publicId="dog" controls="true" >
+          <Transformation width="0.4" angle="20" />
+          <Transformation overlay="cloudinary_icon_white" width="60" opacity="50" gravity="south_east" y="15" x="60" />
+        </Video>
+
+      </CloudinaryContext> */}
