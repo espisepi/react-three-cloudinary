@@ -24,23 +24,29 @@ function App() {
   const [index, setIndex] = useState(0);
   const incrementIndex = useCallback(()=>{
     const newIndex = (index + 1) % 3;
-    console.log(newIndex)
     setIndex((v)=>(newIndex));
   },[index]);
 
-  console.log(dataMusic[index]);
-
-
-  
+  const [ showVideo, setShowVideo ] = useState(true);
+  const handleShowVideo = useCallback(()=>{
+    const newShowVideo = !showVideo;
+    setShowVideo((v)=>(newShowVideo));
+  },[showVideo])
 
   return (
-    <div className="App">
+    <div className="App" style={{ overflow: 'hidden' }}>
 
-      <video id="video" src={dataMusic[index].url} controls={true} crossOrigin="anonymous"></video>
+      <Scene1Canvas style={{position: 'absolute', top: '0', width: '100%', height: '100vh'}} />
 
-      <Scene1Canvas />
+      <video id="video" style={{ display: showVideo ? 'block' : 'none'  }}
+       src={dataMusic[index].url} controls={true} crossOrigin="anonymous"></video>
 
-      <button style={{position:'absolute', width:'100px', height:'100px'}} onClick={incrementIndex}>Cambiar cancion</button>
+
+      <button style={{position:'relative', width:'54px', height:'64px', borderRadius: '15px' }}
+              onClick={incrementIndex}>Cambiar cancion</button>
+
+      <button style={{position:'relative', width:'54px', height:'64px', borderRadius: '15px' }}
+              onClick={handleShowVideo}> Video </button>
 
     </div>
   );

@@ -8,12 +8,6 @@ import VideoPoints from './components/VideoPoints';
 import { Suspense } from 'react';
 
 
-const canvasStyleDefault = {
-    position: 'absolute',
-    top: '0',
-    width: '100%',
-    height: '100vh'
-};
 
 
 export function Scene1() {
@@ -28,9 +22,9 @@ export function Scene1() {
     )
 }
 
-export function Scene1Canvas({ canvasStyle=canvasStyleDefault }) {
+export function Scene1Canvas({ style }) {
     return (
-        <Canvas style={canvasStyle} >
+        <Canvas style={style} >
             <Suspense fallback={<Box material-color='red' material-wireframe='true'/>}>
                 <Scene1/>
             </Suspense>
