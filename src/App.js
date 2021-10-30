@@ -41,12 +41,18 @@ function App() {
       <video id="video" style={{ display: showVideo ? 'block' : 'none'  }}
        src={dataMusic[index].url} controls={true} crossOrigin="anonymous"></video>
 
+      <div className="ui-buttons" style={{ position: 'absolute', top: 0, zIndex: 5 , height:'100vh', width: '100%', display: 'flex', justifyContent: 'space-evenly', alignItems: 'flex-end'  }}>
 
-      <button style={{position:'relative', width:'54px', height:'64px', borderRadius: '15px' }}
-              onClick={incrementIndex}>Cambiar cancion</button>
+      <button style={{ width:'90px', height:'64px', borderRadius: '15px' }}
+                onClick={handleShowVideo}> Video </button>
+        
+        <button style={{ width:'90px', height:'64px', borderRadius: '15px' }}
+                onClick={handleShowVideo}> Mostrar Video </button>
 
-      <button style={{position:'relative', width:'54px', height:'64px', borderRadius: '15px' }}
-              onClick={handleShowVideo}> Video </button>
+        <button style={{ width:'90px', height:'64px', borderRadius: '15px' }}
+                onClick={incrementIndex}>Cambiar cancion</button>
+
+      </div>
 
     </div>
   );
