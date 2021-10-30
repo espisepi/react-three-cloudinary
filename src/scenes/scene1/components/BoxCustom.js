@@ -81,7 +81,7 @@ export function VideoPoint({ id_video = 'video' }) {
     useEffect(()=>{
         const id_interval = setInterval(()=>{
             const videoEl = document.getElementById(id_video);
-            if(videoEl){
+            if(videoEl && videoEl.videoWidth !== 0 && videoEl.videoHeight !== 0 ){
                 setVideo((v)=> (videoEl));
                 clearInterval(id_interval);
             }
@@ -126,7 +126,8 @@ export function VideoPoint({ id_video = 'video' }) {
             // Define Points
             const particles = new THREE.Points(geometry, material);
             particles.rotation.x += Math.PI;
-
+            // Temporal
+            particles.position.z += -100.0;
         
             scene.add(particles);
             setPoints((v)=>(particles));

@@ -53,12 +53,14 @@ function App() {
         </div>
         <Image id="image" publicId="sample" width="0.5" />
 
-        {/* <Video id="video" publicId="samples/sea-turtle" controls={true} style={{width:'50%'}} >
+        {/* <Video id="video" publicId="samples/sea-turtle" controls={true} width={320} height={240} crossOrigin="anonymous" >
         </Video> */}
 
-        <video id="video" src="video.mp4" controls={true}></video>
+        {/* <video id="video" src="video.mp4" controls={true}></video> */}
 
-        {/* <Video cloudName="demo" publicId="dog" controls="true" >
+        <video id="video" src="https://video-dl-esp.herokuapp.com/video/video?url=https://www.youtube.com/watch?v=96h97kNEgXM" controls={true} crossOrigin="anonymous"></video>
+
+        {/* <Video id="video" cloudName="demo" publicId="dog" controls="true" >
           <Transformation width="0.4" angle="20" />
           <Transformation overlay="cloudinary_icon_white" width="60" opacity="50" gravity="south_east" y="15" x="60" />
         </Video> */}
