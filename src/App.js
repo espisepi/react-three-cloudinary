@@ -20,13 +20,11 @@ import { dataMusic } from './data/data';
 //   },
 // ];
 
+const filterYoutubeLink = 'youtu';
+const herokuapp = 'https://video-dl-esp.herokuapp.com/video/video?url=';
+
 
 function App() {
-
-  const [index, setIndex] = useState(0);
-  const incrementIndex = useCallback(()=>{
-    setIndex((v)=>( (index + 1) % 3 ) );
-  },[index]);
 
   const [ showVideo, setShowVideo ] = useState(true);
   const handleShowVideo = useCallback(()=>{
@@ -39,14 +37,11 @@ function App() {
   },[showPanelMusic])
 
   // link: String (url from video)
-  const [ link, setLink ] = useState(dataMusic[index].link);
+  const [ link, setLink ] = useState( herokuapp + dataMusic[5].link );
   const handleLink = useCallback((newLink)=>{
 
     //Show video when link change
     setShowVideo((v)=>(true));
-
-    const filterYoutubeLink = 'youtu';
-    const herokuapp = 'https://video-dl-esp.herokuapp.com/video/video?url=';
 
     if(newLink.includes(filterYoutubeLink)){
       newLink = herokuapp + newLink; // Tengo que tener levantada esa maquina en DigitalOcean
@@ -83,6 +78,10 @@ function App() {
             <h3>{v.name}</h3>
           </div>
         ) ) }
+      </div>
+
+      <div className="panel-search" style={{ display: showPanelMusic ? 'block' : 'none' }}>
+
       </div>
 
     </div>
