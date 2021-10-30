@@ -8,6 +8,9 @@ import { useCallback } from 'react/cjs/react.development';
 
 import { dataMusic } from './data/data';
 
+import { FullScreen, useFullScreenHandle } from "react-full-screen";
+
+
 // const dataMusic = [
 //   {
 //     link: 'video.mp4',
@@ -67,7 +70,17 @@ function App() {
   //   console.log('link: ' + link)
   // },[link])
 
+  const handleFullScreen = useFullScreenHandle();
+  const toggleFullScreen = useCallback(()=>{
+    if(handleFullScreen.active) {
+      handleFullScreen.exit();
+    } else {
+      handleFullScreen.enter();
+    }
+  },[handleFullScreen]);
+
   return (
+    <FullScreen handle={handleFullScreen}>
     <div className="App" style={{ overflow: 'hidden' }}>
 
       <Scene1Canvas style={{position: 'absolute', top: '0', width: '100%', height: '100vh'}} />
@@ -76,7 +89,10 @@ function App() {
        src={link} controls={true} crossOrigin="anonymous"></video>
 
       <div className="ui-buttons" style={{ opacity:'0.5', position: 'absolute', bottom: 0, zIndex: 50, width: '100%', display: 'flex', justifyContent: 'space-evenly', alignItems: 'flex-end'  }}>
-        
+
+        <button style={{ width:'90px', height:'64px', borderRadius: '15px' }}
+                onClick={toggleFullScreen}> Full Screen </button>
+
         <button style={{ width:'90px', height:'64px', borderRadius: '15px' }}
                 onClick={handleShowVideo}> Show Video </button>
 
@@ -110,6 +126,7 @@ function App() {
       </div>
 
     </div>
+    </FullScreen>
   );
 }
 
