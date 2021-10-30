@@ -3,43 +3,8 @@ import './App.css';
 
 import {CloudinaryContext, Image, Video, Transformation } from 'cloudinary-react';
 
-import useAnalyser from './hooks/useAnalyser';
-
 import { Scene1Canvas } from './scenes/scene1/Scene1';
 
-function ImageAndVideo() {
-
-  const [image, setImage] = useState();
-  const [video, setVideo] = useState();
-  
-  useEffect(()=>{
-    const image = document.getElementById('image');
-    const video = document.getElementById('video');
-    console.log(image)
-    console.log(video)
-
-    setVideo(()=>video)
-    setImage(()=>image)
-
-  },[]);
-
-  // const [analyser, dataAnalyser, updateAnalyser] = useAnalyser(video);
-  // console.log(analyser)
-  // console.log(dataAnalyser)
-
-  // window.analyser = analyser;
-  // window.dataAnalyser = dataAnalyser;
-  
-  // setInterval(()=>{
-  //   if(analyser){
-  //     updateAnalyser();
-  //     // analyser.getByteFrequencyData(dataAnalyser)
-  //     console.log(dataAnalyser)
-  //   }
-  // },600);
-
-  return null;
-}
 
 function App() {
 
@@ -67,8 +32,6 @@ function App() {
 
       </CloudinaryContext>
 
-         
-      <ImageAndVideo />
 
       <h1>Sepinaco</h1>
       <Scene1Canvas />

@@ -1,5 +1,4 @@
-import React, { useState, useEffect, useCallback, useMemo } from 'react';
-import * as THREE from 'three';
+import React, { useState, useEffect } from 'react';
 import Analyser from './Analyser,';
 
 
