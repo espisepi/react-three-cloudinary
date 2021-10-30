@@ -58,9 +58,9 @@ function App() {
       <video id="video" style={{ display: showVideo ? 'block' : 'none', width: '100%', zIndex: 100  }}
        src={link} controls={true} crossOrigin="anonymous"></video>
 
-      <div className="ui-buttons" style={{ position: 'absolute', bottom: 0, zIndex: 50, width: '100%', display: 'flex', justifyContent: 'space-evenly', alignItems: 'flex-end'  }}>
+      <div className="ui-buttons" style={{ opacity:'0.5', position: 'absolute', bottom: 0, zIndex: 50, width: '100%', display: 'flex', justifyContent: 'space-evenly', alignItems: 'flex-end'  }}>
 
-        <button style={{ width:'90px', height:'64px', borderRadius: '15px' }}
+        <button style={{ display:'none', width:'90px', height:'64px', borderRadius: '15px' }}
                 onClick={handleShowVideo}> Buscar video </button>
         
         <button style={{ width:'90px', height:'64px', borderRadius: '15px' }}
@@ -71,17 +71,19 @@ function App() {
 
       </div>
 
-      <div className="panel-music" style={{ display: showPanelMusic ? 'block' : 'none', position: 'absolute', top: 0, zIndex: 25, height: '100vh', width: '100%', backgroundColor: 'gray', opacity: 0.5 }}  >
+      <div className="panel-music" style={{ overflow: 'auto', display: showPanelMusic ? 'block' : 'none', position: 'absolute', top: 0, zIndex: 25, width: '100%', height: '100vh', backgroundColor: 'gray', opacity: 0.5 }}  >
+        
+        <div className="panel-music__search" style={{ width: '100%', height: '5vh', cursor: 'pointer' }}>
+          <input type="text"></input>
+
+        </div>
+
         { dataMusic.map( v => (
-          <div key={v.name} className="panel-music__link panel-music__link--hover" style={{ width: '100%', height: '5vh', cursor: 'pointer' }} 
+          <div key={v.name} className="panel-music__link" style={{ width: '100%', height: '5vh', cursor: 'pointer' }} 
                onClick={ () => handleLink(v.link) }>
             <h3>{v.name}</h3>
           </div>
         ) ) }
-      </div>
-
-      <div className="panel-search" style={{ display: showPanelMusic ? 'block' : 'none' }}>
-
       </div>
 
     </div>
