@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import './App.css';
 
 import {CloudinaryContext, Image, Video, Transformation } from 'cloudinary-react';
@@ -41,7 +41,7 @@ function App() {
   const handleLink = useCallback((newLink)=>{
 
     //Show video when link change
-    setShowVideo((v)=>(true));
+    // setShowVideo((v)=>(true));
 
     if(newLink.includes(filterYoutubeLink)){
       newLink = herokuapp + newLink; // Tengo que tener levantada esa maquina en DigitalOcean
@@ -49,6 +49,23 @@ function App() {
     setLink((v)=>(newLink));
 
   },[]);
+
+  const inputTextLinkRef = useRef();
+  const handleSearchLink = useCallback(()=>{
+    if(inputTextLinkRef.current) {
+      let newLink = inputTextLinkRef.current.value;
+      if(newLink.includes(filterYoutubeLink)){
+        newLink = herokuapp + newLink; // Tengo que tener levantada esa maquina en DigitalOcean
+      }
+      setLink((v)=>(newLink));
+      
+      inputTextLinkRef.current.value = '';
+    }
+  },[inputTextLinkRef]);
+
+  // useEffect(()=>{
+  //   console.log('link: ' + link)
+  // },[link])
 
   return (
     <div className="App" style={{ overflow: 'hidden' }}>
@@ -59,22 +76,28 @@ function App() {
        src={link} controls={true} crossOrigin="anonymous"></video>
 
       <div className="ui-buttons" style={{ opacity:'0.5', position: 'absolute', bottom: 0, zIndex: 50, width: '100%', display: 'flex', justifyContent: 'space-evenly', alignItems: 'flex-end'  }}>
-
-        <button style={{ display:'none', width:'90px', height:'64px', borderRadius: '15px' }}
-                onClick={handleShowVideo}> Buscar video </button>
         
         <button style={{ width:'90px', height:'64px', borderRadius: '15px' }}
-                onClick={handleShowVideo}> Mostrar Video </button>
+                onClick={handleShowVideo}> Show Video </button>
 
         <button style={{ width:'90px', height:'64px', borderRadius: '15px' }}
-                onClick={handleShowPanelMusic}>Cambiar cancion</button>
+                onClick={handleShowPanelMusic}>Change Video</button>
 
       </div>
 
       <div className="panel-music" style={{ overflow: 'auto', display: showPanelMusic ? 'block' : 'none', position: 'absolute', top: 0, zIndex: 25, width: '100%', height: '100vh', backgroundColor: 'gray', opacity: 0.5 }}  >
         
-        <div className="panel-music__search" style={{ width: '100%', height: '5vh', cursor: 'pointer' }}>
-          <input type="text"></input>
+        <div className="panel-music__search" style={{ width: '100%', height: '5vh', cursor: 'pointer', display: 'flex',  }}>
+          
+          <input type="text" style={{ decoration: 'none' }}
+                 ref={inputTextLinkRef}
+                 placeholder='https://www.youtube.com/watch?v=Jj9bsdkzuJs' ></input>
+
+          <button style={{ borderRadius: '15px' }}
+                  onClick={ handleSearchLink } >Search</button>
+
+          <button style={{ borderRadius: '15px' }}
+                  onClick={ handleShowPanelMusic } >Exit</button>
 
         </div>
 
