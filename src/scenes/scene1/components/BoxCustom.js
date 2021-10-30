@@ -76,7 +76,6 @@ export function VideoPoint({ id_video = 'video' }) {
         
     const { scene } = useThree();
 
-
     // Hacer un setInterval que finaliza hasta que encuentra el video y cuando lo encuentra se ejecuta el useEffect siguiente (crear useState para el video)
     const [video, setVideo] = useState();
     useEffect(()=>{
@@ -100,9 +99,8 @@ export function VideoPoint({ id_video = 'video' }) {
             const positions = [];
             const uvs = [];
     
-            const videoEl = document.getElementById(id_video);
-            const videoWidth = videoEl.videoWidth;
-            const videoHeight = videoEl.videoHeight;
+            const videoWidth = video.videoWidth;
+            const videoHeight = video.videoHeight;
     
             for (let y = 0, height = videoHeight; y < height; y += 1) {
                 for (let x = 0, width = videoWidth; x < width; x += 1) {
@@ -115,8 +113,8 @@ export function VideoPoint({ id_video = 'video' }) {
                     uvs.push( x / videoWidth, y / videoHeight );
                 }
             }
-            console.log(videoHeight);
-            console.log(videoWidth);
+            console.log('video height: ' + videoHeight);
+            console.log('video width: ' + videoWidth);
     
             geometry.setAttribute( 'position', new THREE.Float32BufferAttribute( positions, 3 ) );
             geometry.setAttribute( 'uv', new THREE.Float32BufferAttribute( uvs, 2 ) );
@@ -142,7 +140,12 @@ export function VideoPoint({ id_video = 'video' }) {
 
     },[video]);
 
-    
+    const analyser = useAnalyser('video');
+    useFrame(()=>{
+        if ( analyser && points ) {
+           points.material.uniforms.bass.value = analyser.getUpdateLowerMax();
+        }
+    })
 
     return (
         null
