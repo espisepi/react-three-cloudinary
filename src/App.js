@@ -38,10 +38,10 @@ function App() {
 
       <Scene1Canvas style={{position: 'absolute', top: '0', width: '100%', height: '100vh'}} />
 
-      <video id="video" style={{ display: showVideo ? 'block' : 'none'  }}
+      <video id="video" style={{ display: showVideo ? 'block' : 'none', width: '100%', zIndex: 100  }}
        src={dataMusic[index].url} controls={true} crossOrigin="anonymous"></video>
 
-      <div className="ui-buttons" style={{ position: 'absolute', top: 0, zIndex: 5 , height:'100vh', width: '100%', display: 'flex', justifyContent: 'space-evenly', alignItems: 'flex-end'  }}>
+      <div className="ui-buttons" style={{ position: 'absolute', bottom: 0, zIndex: 5, width: '100%', display: 'flex', justifyContent: 'space-evenly', alignItems: 'flex-end'  }}>
 
       <button style={{ width:'90px', height:'64px', borderRadius: '15px' }}
                 onClick={handleShowVideo}> Video </button>
