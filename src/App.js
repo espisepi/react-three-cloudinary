@@ -6,32 +6,54 @@ import {CloudinaryContext, Image, Video, Transformation } from 'cloudinary-react
 import { Scene1Canvas } from './scenes/scene1/Scene1';
 import { useCallback } from 'react/cjs/react.development';
 
-const dataMusic = [
-  {
-    url: 'video.mp4',
-  },
-  {
-    url: 'https://video-dl-esp.herokuapp.com/video/video?url=https://www.youtube.com/watch?v=96h97kNEgXM',
-  },
-  {
-    url: 'https://video-dl-esp.herokuapp.com/video/video?url=https://www.youtube.com/watch?v=BgcFGo7X3_M&list=PLbF25hg0V3wBCMH8pvbGOUw5fxp0pbrLA&index=71',
-  },
-];
+import { dataMusic } from './data/data';
+
+// const dataMusic = [
+//   {
+//     link: 'video.mp4',
+//   },
+//   {
+//     link: 'https://video-dl-esp.herokuapp.com/video/video?url=https://www.youtube.com/watch?v=96h97kNEgXM',
+//   },
+//   {
+//     link: 'https://video-dl-esp.herokuapp.com/video/video?url=https://www.youtube.com/watch?v=BgcFGo7X3_M&list=PLbF25hg0V3wBCMH8pvbGOUw5fxp0pbrLA&index=71',
+//   },
+// ];
 
 
 function App() {
 
   const [index, setIndex] = useState(0);
   const incrementIndex = useCallback(()=>{
-    const newIndex = (index + 1) % 3;
-    setIndex((v)=>(newIndex));
+    setIndex((v)=>( (index + 1) % 3 ) );
   },[index]);
 
   const [ showVideo, setShowVideo ] = useState(true);
   const handleShowVideo = useCallback(()=>{
-    const newShowVideo = !showVideo;
-    setShowVideo((v)=>(newShowVideo));
+    setShowVideo((v)=>(!showVideo));
   },[showVideo])
+
+  const [ showPanelMusic, setShowPanelMusic ] = useState(false);
+  const handleShowPanelMusic = useCallback(()=>{
+    setShowPanelMusic((v)=>(!showPanelMusic));
+  },[showPanelMusic])
+
+  // link: String (url from video)
+  const [ link, setLink ] = useState(dataMusic[index].link);
+  const handleLink = useCallback((newLink)=>{
+
+    //Show video when link change
+    setShowVideo((v)=>(true));
+
+    const filterYoutubeLink = 'youtu';
+    const herokuapp = 'https://video-dl-esp.herokuapp.com/video/video?url=';
+
+    if(newLink.includes(filterYoutubeLink)){
+      newLink = herokuapp + newLink; // Tengo que tener levantada esa maquina en DigitalOcean
+    }
+    setLink((v)=>(newLink));
+
+  },[]);
 
   return (
     <div className="App" style={{ overflow: 'hidden' }}>
@@ -39,19 +61,28 @@ function App() {
       <Scene1Canvas style={{position: 'absolute', top: '0', width: '100%', height: '100vh'}} />
 
       <video id="video" style={{ display: showVideo ? 'block' : 'none', width: '100%', zIndex: 100  }}
-       src={dataMusic[index].url} controls={true} crossOrigin="anonymous"></video>
+       src={link} controls={true} crossOrigin="anonymous"></video>
 
-      <div className="ui-buttons" style={{ position: 'absolute', bottom: 0, zIndex: 5, width: '100%', display: 'flex', justifyContent: 'space-evenly', alignItems: 'flex-end'  }}>
+      <div className="ui-buttons" style={{ position: 'absolute', bottom: 0, zIndex: 50, width: '100%', display: 'flex', justifyContent: 'space-evenly', alignItems: 'flex-end'  }}>
 
-      <button style={{ width:'90px', height:'64px', borderRadius: '15px' }}
-                onClick={handleShowVideo}> Video </button>
+        <button style={{ width:'90px', height:'64px', borderRadius: '15px' }}
+                onClick={handleShowVideo}> Buscar video </button>
         
         <button style={{ width:'90px', height:'64px', borderRadius: '15px' }}
                 onClick={handleShowVideo}> Mostrar Video </button>
 
         <button style={{ width:'90px', height:'64px', borderRadius: '15px' }}
-                onClick={incrementIndex}>Cambiar cancion</button>
+                onClick={handleShowPanelMusic}>Cambiar cancion</button>
 
+      </div>
+
+      <div className="panel-music" style={{ display: showPanelMusic ? 'block' : 'none', position: 'absolute', top: 0, zIndex: 25, height: '100vh', width: '100%', backgroundColor: 'gray', opacity: 0.5 }}  >
+        { dataMusic.map( v => (
+          <div key={v.name} className="panel-music__link panel-music__link--hover" style={{ width: '100%', height: '5vh', cursor: 'pointer' }} 
+               onClick={ () => handleLink(v.link) }>
+            <h3>{v.name}</h3>
+          </div>
+        ) ) }
       </div>
 
     </div>
