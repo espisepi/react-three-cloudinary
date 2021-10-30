@@ -72,57 +72,77 @@ export function BoxShader({}) {
     )
 }
 
-export function VideoPoint() {
+export function VideoPoint({ id_video = 'video' }) {
         
     const { scene } = useThree();
 
+
+    // Hacer un setInterval que finaliza hasta que encuentra el video y cuando lo encuentra se ejecuta el useEffect siguiente (crear useState para el video)
+    const [video, setVideo] = useState();
+    useEffect(()=>{
+        const id_interval = setInterval(()=>{
+            const videoEl = document.getElementById(id_video);
+            if(videoEl){
+                setVideo((v)=> (videoEl));
+                clearInterval(id_interval);
+            }
+        },100);
+    },[id_video]);
+
+    // Crear particles con el video
     const [points, setPoints] = useState();
     useEffect(()=>{
 
-        const geometry = new THREE.BufferGeometry();
-        const positions = [];
-        const uvs = [];
+        if(video) {
 
-        const videoEl = document.getElementById('video');
-        const videoWidth = videoEl.videoWidth;
-        const videoHeight = videoEl.videoHeight;
-
-        for (let y = 0, height = videoHeight; y < height; y += 1) {
-            for (let x = 0, width = videoWidth; x < width; x += 1) {
-                const vertex = new THREE.Vector3(
-                    x - videoWidth / 2,
-                    -y + videoHeight / 2,
-                    0
-                );
-                positions.push( vertex.x, vertex.y, vertex.z );
-                uvs.push( x / videoWidth, y / videoHeight );
-            }
-        }
-        console.log(videoHeight);
-        console.log(videoWidth);
-
-        geometry.setAttribute( 'position', new THREE.Float32BufferAttribute( positions, 3 ) );
-        geometry.setAttribute( 'uv', new THREE.Float32BufferAttribute( uvs, 2 ) );
-        
-        const material = new VideoPointShader();
-        const particles = new THREE.Points(geometry, material);
+            // Define Geometry
+            const geometry = new THREE.BufferGeometry();
+            const positions = [];
+            const uvs = [];
     
-        scene.add(particles);
-        setPoints((v)=>(particles));
-
-        return () => {
-            scene.remove(particles);
-            setPoints((v)=>(null));
-        }
-    },[document.getElementById('video')]);
-
-    // Hacer un setInterval que finaliza hasta que encuentra el video y cuando lo encuentra se ejecuta el useEffect (crear useState para el video)
-
-    // useEffect(()=>{
-    //     setInterval(()=>{
+            const videoEl = document.getElementById(id_video);
+            const videoWidth = videoEl.videoWidth;
+            const videoHeight = videoEl.videoHeight;
+    
+            for (let y = 0, height = videoHeight; y < height; y += 1) {
+                for (let x = 0, width = videoWidth; x < width; x += 1) {
+                    const vertex = new THREE.Vector3(
+                        x - videoWidth / 2,
+                        -y + videoHeight / 2,
+                        0
+                    );
+                    positions.push( vertex.x, vertex.y, vertex.z );
+                    uvs.push( x / videoWidth, y / videoHeight );
+                }
+            }
+            console.log(videoHeight);
+            console.log(videoWidth);
+    
+            geometry.setAttribute( 'position', new THREE.Float32BufferAttribute( positions, 3 ) );
+            geometry.setAttribute( 'uv', new THREE.Float32BufferAttribute( uvs, 2 ) );
             
-    //     })
-    // },id_video)
+            // Define Material
+            const material = new VideoPointShader();
+            material.uniforms.iChannel0.value = new THREE.VideoTexture(video);
+
+            // Define Points
+            const particles = new THREE.Points(geometry, material);
+            particles.rotation.x += Math.PI;
+
+        
+            scene.add(particles);
+            setPoints((v)=>(particles));
+    
+            return () => {
+                scene.remove(particles);
+                setPoints((v)=>(null));
+            }
+
+        }
+
+    },[video]);
+
+    
 
     return (
         null
