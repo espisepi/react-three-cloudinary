@@ -1,10 +1,9 @@
-import React, { useEffect, useState, useRef } from 'react';
+import React, { useEffect, useState, useRef, useCallback } from 'react';
 import './App.css';
 
 import {CloudinaryContext, Image, Video, Transformation } from 'cloudinary-react';
 
 import { Scene1Canvas } from './scenes/scene1/Scene1';
-import { useCallback } from 'react/cjs/react.development';
 
 import { dataMusic } from './data/data';
 
