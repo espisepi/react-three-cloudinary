@@ -5,7 +5,7 @@ import * as THREE from 'three';
 import { useFrame, useLoader, useThree } from "@react-three/fiber";
 import { Box } from '@react-three/drei';
 
-import useAnalyser from "../../../hooks/analyser/useAnalyser";
+import useAnalyser from "../../hooks/analyser/useAnalyser";
 import "./shaders/Fade";
 
 import VideoPointShader from "./shaders/VideoPointShader";

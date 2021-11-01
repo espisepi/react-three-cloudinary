@@ -3,7 +3,7 @@ import React from 'react';
 import { Canvas, useFrame } from '@react-three/fiber'
 import { OrbitControls, Box } from '@react-three/drei';
 
-import { BoxVideo, BoxShader } from './components/BoxCustom';
+// import { BoxVideo, BoxShader } from './components/BoxCustom';
 import VideoPoints from './components/VideoPoints';
 import { Suspense } from 'react';
 

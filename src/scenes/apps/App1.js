@@ -3,9 +3,10 @@ import './App1.css';
 
 import {CloudinaryContext, Image, Video, Transformation } from 'cloudinary-react';
 
-import { Scene1Canvas } from '../scenes/scene1/Scene1';
+import { Scene1Canvas } from '../Scene1';
+import { Scene2Canvas } from '../Scene2';
 
-import { dataMusic } from '../data/data';
+import { dataMusic } from '../../data/data';
 
 import { FullScreen, useFullScreenHandle } from "react-full-screen";
 

@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useRef, useCallback } from 'react';
 import './App.css';
 
-import App1 from './apps/App1';
+import App1 from './scenes/apps/App1';
 
 
 
