@@ -1,12 +1,12 @@
 export const dataMusic = [
     {
         name:'Tove Lo - Habits (Stay High)',
-        link:'assets/musica/stayHigh.mp4',
+        link:'videos/stayHigh.mp4',
         img:'assets/obj/minerales/3.jpg'
     },
     {
         name: 'Gata Cattana - Gotham',
-        link:'assets/musica/gotham.mp4',
+        link:'videos/gotham.mp4',
         img:'assets/obj/minerales/3.jpg'
     },
     {
@@ -51,7 +51,7 @@ export const dataMusic = [
     },
     {
         name:'Elane - Niente',
-        link:'assets/musica/elane-low.mp4',
+        link:'videos/elane-low.mp4',
         img:'assets/obj/minerales/3.jpg'
     },
     {
