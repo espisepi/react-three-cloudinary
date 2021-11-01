@@ -3,8 +3,10 @@ import './App1.css';
 
 import {CloudinaryContext, Image, Video, Transformation } from 'cloudinary-react';
 
-import { Scene1Canvas } from '../Scene1';
-import { Scene2Canvas } from '../Scene2';
+// import { Scene1Canvas } from '../Scene1';
+// import { Scene2Canvas } from '../Scene2';
+
+import { Scene1Canvas, Scene2Canvas } from '../Scene';
 
 import { dataMusic } from '../../data/data';
 
