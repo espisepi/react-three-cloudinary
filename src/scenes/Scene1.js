@@ -7,7 +7,7 @@ import { OrbitControls, Box } from '@react-three/drei';
 import VideoPoints from './components/VideoPoints';
 import { Suspense } from 'react';
 
-
+import { DefaultXRControllers, ARCanvas, Interactive } from '@react-three/xr';
 
 
 export function Scene1() {
@@ -17,7 +17,6 @@ export function Scene1() {
         {/* <BoxVideo /> */}
         {/* <BoxShader /> */}
         <VideoPoints />
-        <OrbitControls />
         </>
     )
 }
@@ -28,6 +27,17 @@ export function Scene1Canvas({ style }) {
             <Suspense fallback={<Box material-color='red' material-wireframe='true'/>}>
                 <Scene1/>
             </Suspense>
+
+            <OrbitControls />
         </Canvas>
     )
+}
+
+export function Scene1ARCanvas() {
+    return (
+        <ARCanvas>
+            <Scene1 />
+            <DefaultXRControllers />
+        </ARCanvas>
+    );
 }
