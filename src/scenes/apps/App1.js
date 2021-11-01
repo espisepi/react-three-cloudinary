@@ -42,7 +42,8 @@ function App1() {
   },[showPanelMusic])
 
   // link: String (url from video)
-  const [ link, setLink ] = useState( herokuapp + dataMusic[5].link );
+  // const [ link, setLink ] = useState( herokuapp + dataMusic[5].link );
+  const [ link, setLink ] = useState( dataMusic[0].link );
   const handleLink = useCallback((newLink)=>{
 
     //Show video when link change
