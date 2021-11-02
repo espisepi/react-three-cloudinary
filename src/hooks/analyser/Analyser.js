@@ -4,24 +4,31 @@
 export default class Analyser {
 
     constructor(audio, fftSize = 2048) {
+
+        if(typeof Analyser.instance === 'object') {
+            return 
+        }
+
         if ( audio ) {
-            console.log(audio)
             const context = new AudioContext();
             const src = context.createMediaElementSource(audio);
-            console.log(src)
-            window.src = src
             const analyser = context.createAnalyser();
             src.connect(analyser);
             analyser.connect(context.destination);
             analyser.fftSize = fftSize;
             const bufferLength = analyser.frequencyBinCount;
             const dataArray = new Uint8Array(bufferLength);
-            
+        
+            this.context = context;
             this.analyser = analyser;
             this.dataArray = dataArray;
         } else {
             console.error('No se ha podido crear el Analyser');
         }
+    }
+
+    disconnect() {
+        // this.analyser.disconnect();
     }
 
     update() {

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import Analyser from './Analyser,';
+import Analyser from './Analyser';
 
 
 export default function useAnalyser( elementId, fftSize = 2048 ) {
