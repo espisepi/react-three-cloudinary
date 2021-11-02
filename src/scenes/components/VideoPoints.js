@@ -1,12 +1,10 @@
 
 
-import { useMemo, useRef, useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import * as THREE from 'three';
-import { useFrame, useLoader, useThree } from "@react-three/fiber";
-import { Box } from '@react-three/drei';
+import { useFrame, useThree } from "@react-three/fiber";
 
 import useAnalyser from "../../hooks/analyser/useAnalyser";
-import "./shaders/Fade";
 
 import VideoPointShader from "./shaders/VideoPointShader";
 
