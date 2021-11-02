@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useRef, useCallback } from 'react';
-import './App1.css';
+import './AppUI.css';
 
 import {CloudinaryContext, Image, Video, Transformation } from 'cloudinary-react';
 
@@ -9,8 +9,11 @@ import {CloudinaryContext, Image, Video, Transformation } from 'cloudinary-react
 import { Scene1Canvas, Scene1ARCanvas, Scene2Canvas } from '../Scene';
 
 import { dataMusic } from '../../data/data';
+import dataScene from '../../data/dataScene';
 
 import { FullScreen, useFullScreenHandle } from "react-full-screen";
+
+import Apps from './Apps';
 
 
 // const dataMusic = [
@@ -82,11 +85,14 @@ function App1() {
     }
   },[handleFullScreen]);
 
+  const [sceneId, setSceneId] = useState('scene1');
+
+
   return (
     <FullScreen handle={handleFullScreen}>
     <div className="App" style={{ overflow: 'hidden' }}>
 
-      <Scene1Canvas style={{position: 'absolute', top: '0', width: '100%', height: '100vh'}} />
+      <Apps id={sceneId} />
 
       <video id="video" style={{ display: showVideo ? 'block' : 'none', width: '100%', zIndex: 100  }}
        src={link} controls={true} crossOrigin="anonymous"></video>
@@ -118,6 +124,13 @@ function App1() {
           <button style={{ borderRadius: '15px' }}
                   onClick={ handleShowPanelMusic } >Exit</button>
 
+        </div>
+
+        <div className="panel-music__sceneId">
+          { dataScene.map( v => (
+            <button key={v.id} style={{ borderRadius: '15px' }}
+                    onClick={() => setSceneId(v.id) } >{v.name}</button>
+          ) ) }
         </div>
 
         { dataMusic.map( v => (

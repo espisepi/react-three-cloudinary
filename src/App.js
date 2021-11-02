@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useRef, useCallback } from 'react';
 import './App.css';
 
-import App1 from './scenes/apps/App1';
+import AppUI from './scenes/apps/AppUI';
 
 
 
@@ -13,7 +13,7 @@ export default function App() {
 
   if(clicked) {
     return (
-      <App1 />
+      <AppUI />
     );
   }
 
