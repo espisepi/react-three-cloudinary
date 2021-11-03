@@ -7,7 +7,7 @@ import { OrbitControls, Box } from '@react-three/drei';
 import VideoPoints from './components/VideoPoints';
 import { Suspense } from 'react';
 
-import { DefaultXRControllers, ARCanvas, Interactive } from '@react-three/xr';
+import { DefaultXRControllers, ARCanvas, Interactive, VRCanvas } from '@react-three/xr';
 
 
 export function Scene1() {
@@ -39,5 +39,14 @@ export function Scene1ARCanvas() {
             <Scene1 />
             <DefaultXRControllers />
         </ARCanvas>
+    );
+}
+
+export function Scene1VRCanvas() {
+    return (
+        <VRCanvas>
+            <Scene1 />
+            <DefaultXRControllers />
+        </VRCanvas>
     );
 }
