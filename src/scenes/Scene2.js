@@ -11,6 +11,8 @@ import Horse from '../scenes/components/Horse';
 import Ocean from './components/Ocean';
 import BackgroundVideo from './components/BackgroundVideo';
 
+import { DefaultXRControllers, ARCanvas, Interactive } from '@react-three/xr';
+
 export function Scene2() {
     return (
         <>
@@ -19,18 +21,27 @@ export function Scene2() {
         <group rotation={[0,-Math.PI/2,0]}>
             <Ocean geometry={new THREE.BoxBufferGeometry( 10000, 10000, 10000 )} position={[0,5000,0]} rotation={[0,Math.PI/2,0]} />
         </group>
-        {/* <BackgroundVideo /> */}
-        <OrbitControls />
+        <BackgroundVideo />
         </>
     )
 }
 
-export function Scene2Canvas({ style }) {
+export function Scene2Canvas({ style, ...props }) {
     return (
-        <Canvas style={style} camera={{far:20000}} >
+        <Canvas style={{...style, zIndex:'-5' }} {...props} camera={{position:[52.74, 52.74, 175.80], fov:55, far:20000}} >
             <Suspense fallback={<Box material-color='red' material-wireframe='true'/>}>
                 <Scene2/>
             </Suspense>
+            <OrbitControls rotateSpeed={0.5} enablePan={false} autoRotateSpeed={1} maxPolarAngle={Math.PI / 2 - 0.005} maxDistance={2500} />
         </Canvas>
     )
+}
+
+export function Scene2ARCanvas() {
+    return (
+        <ARCanvas>
+            <Scene2 />
+            <DefaultXRControllers />
+        </ARCanvas>
+    );
 }
