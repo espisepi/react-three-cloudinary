@@ -13,6 +13,10 @@ export const dataScene = [
     {
         id: 'scene2',
         name: 'Scene 2'
+    },
+    {
+        id: 'scene2AR',
+        name: 'Scene 2 AR'
     }
 ];
 

@@ -40,7 +40,12 @@ export function Scene2Canvas({ style, ...props }) {
 export function Scene2ARCanvas() {
     return (
         <ARCanvas>
-            <Scene2 />
+            <ambientLight />
+            <Horse />
+            <group rotation={[0,-Math.PI/2,0]}>
+                <Ocean geometry={new THREE.BoxBufferGeometry( 10000, 10000, 10000 )} position={[-52.74,5000 - 52.74,-175.80]} rotation={[0,Math.PI/2,0]} />
+            </group>
+            <BackgroundVideo />
             <DefaultXRControllers />
         </ARCanvas>
     );
