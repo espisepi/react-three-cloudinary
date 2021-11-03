@@ -1,20 +1,34 @@
 
+let context;
+let src;
+let analyser;
+function createMedia(audio) {
+    if(window.contextAnalyser) {
+        context = window.contextAnalyser;
+        src = window.srcAnalyser;
+        analyser = window.analyser;
+    } else {
+        context = new AudioContext();
+        src = context.createMediaElementSource(audio);
+        analyser = context.createAnalyser();
+        src.connect(analyser);
+        analyser.connect(context.destination);
+
+        window.contextAnalyser = context;
+        window.srcAnalyser = src;
+        window.analyser = analyser;
+    }
+}
+
 
 // fftSize = 512 || 2048 || potenciaDe2
 export default class Analyser {
 
     constructor(audio, fftSize = 2048) {
 
-        if(typeof Analyser.instance === 'object') {
-            return 
-        }
-
         if ( audio ) {
-            const context = new AudioContext();
-            const src = context.createMediaElementSource(audio);
-            const analyser = context.createAnalyser();
-            src.connect(analyser);
-            analyser.connect(context.destination);
+            // const context = new AudioContext();
+            createMedia(audio);
             analyser.fftSize = fftSize;
             const bufferLength = analyser.frequencyBinCount;
             const dataArray = new Uint8Array(bufferLength);
