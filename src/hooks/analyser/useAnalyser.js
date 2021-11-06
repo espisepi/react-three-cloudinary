@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Analyser from './Analyser';
 
 
-export default function useAnalyser( elementId, fftSize = 2048 ) {
+export default function useAnalyser( elementId = 'video', fftSize = 2048 ) {
 
     const [ analyser, setAnalyser ] = useState();
     useEffect(()=>{

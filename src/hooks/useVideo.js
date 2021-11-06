@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 
 
-export default function useVideo(videoId, interval=100) {
+export default function useVideo(videoId='video', interval=100) {
     // Hacer un setInterval que finaliza hasta que encuentra el video
     const [video, setVideo] = useState();
     useEffect(()=>{

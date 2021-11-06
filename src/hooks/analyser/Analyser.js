@@ -1,4 +1,6 @@
 
+import { DataTexture, RedFormat, LuminanceFormat } from 'three'; // https://threejs.org/docs/#api/en/constants/Textures
+
 let context;
 let src;
 let analyser;
@@ -33,9 +35,12 @@ export default class Analyser {
             const bufferLength = analyser.frequencyBinCount;
             const dataArray = new Uint8Array(bufferLength);
         
+            this.fftSize = fftSize;
+            this.bufferLength = bufferLength;
             this.context = context;
             this.analyser = analyser;
             this.dataArray = dataArray;
+            this.dataTexture = undefined;
         } else {
             console.error('No se ha podido crear el Analyser');
         }
@@ -43,6 +48,14 @@ export default class Analyser {
 
     disconnect() {
         // this.analyser.disconnect();
+    }
+
+    getDataTexture() {
+        if(!this.dataTexture) {
+            const format = RedFormat;
+            this.dataTexture = new DataTexture( this.dataArray, this.bufferLength, 1, format )
+        }
+        return this.dataTexture;
     }
 
     update() {
