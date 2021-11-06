@@ -3,12 +3,41 @@ import * as THREE from 'three';
 import { useFrame, useLoader, useThree } from "@react-three/fiber";
 import { Box } from '@react-three/drei';
 
-import useAnalyser from "../../../hooks/analyser/useAnalyser";
-import "./shaders/Fade";
-
 import img1 from "./shaders/img/img1.jpg";
 import img2 from "./shaders/img/img2.jpg";
 import img3 from "./shaders/img/disp3.jpg";
+
+import useAnalyser from "../../hooks/analyser/useAnalyser";
+import useVideo from "../../hooks/useVideo";
+
+import './shaders/audioVisualizer/AudioVisualizerShader1'; // <audioVisualizerShader1 />
+
+
+
+
+export function BoxAudioVisualizerShader1() {
+
+    const analyser = useAnalyser();
+    // const video = useVideo();
+
+    const refBox = useRef();
+
+    useFrame(()=>{
+        if(analyser && refBox.current.material.uniforms.iChannel0) {
+            analyser.update();
+            refBox.current.material.uniforms.iChannel0.value.needsUpdate = true;
+        }
+    })
+
+    return (
+        <Box ref={refBox} >
+            <audioVisualizerShader1 attach='material' uniforms-iChannel0-value={ analyser ? analyser.getDataTexture() : undefined} />
+        </Box>
+    )
+}
+
+
+
 
 
 

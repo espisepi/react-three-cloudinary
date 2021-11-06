@@ -7,28 +7,15 @@ import { OrbitControls, Box } from '@react-three/drei';
 import useAnalyser from '../hooks/analyser/useAnalyser';
 import useVideo from '../hooks/useVideo';
 
-import AudioVisualizerShader1 from './components/shaders/audioVisualizer-1/AudioVisualizerShader1';
+import { BoxAudioVisualizerShader1 } from './components/BoxCustom';
+
+
 
 export function Scene3() {
-
-    const analyser = useAnalyser();
-    const video = useVideo();
-
-    const refBox = useRef();
-
-    useFrame(()=>{
-        if(analyser && refBox.current.material.uniforms.iChannel0) {
-            analyser.update();
-            refBox.current.material.uniforms.iChannel0.value.needsUpdate = true;
-        }
-    })
-
     return (
         <>
         <ambientLight />
-        <Box ref={refBox} >
-            <audioVisualizerShader1 attach='material' uniforms-iChannel0-value={ analyser ? analyser.getDataTexture() : undefined} />
-        </Box>
+        <BoxAudioVisualizerShader1 />
         </>
     );
 }
