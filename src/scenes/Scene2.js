@@ -52,7 +52,7 @@ export function Scene2ARCanvas() {
             <group rotation={[0,-Math.PI/2,0]}>
                 <Ocean geometry={new THREE.BoxBufferGeometry( 10000, 10000, 10000 )} position={[0,4800,0]} rotation={[0,Math.PI/2,0]} />
             </group>
-            <BackgroundVideo />
+            {/* <BackgroundVideo /> */}
             <DefaultXRControllers />
         </ARCanvas>
     );

@@ -29,6 +29,14 @@ export const dataScene = [
     {
         id: 'scene3',
         name: 'Scene 3'
+    },
+    {
+        id: 'scene3AR',
+        name: 'Scene 3 AR'
+    },
+    {
+        id: 'scene3VR',
+        name: 'Scene 3 VR'
     }
 ];
 

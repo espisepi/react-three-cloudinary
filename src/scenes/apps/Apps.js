@@ -23,6 +23,12 @@ export default function Apps({ id='scene1', style={position: 'absolute', top: '0
     }
     else if ( id === 'scene3' ) {
         return <Scene.Scene3Canvas style={style} />
+    }
+    else if ( id === 'scene3AR' ) {
+        return <Scene.Scene3ARCanvas style={style} />
+    }
+    else if ( id === 'scene3VR' ) {
+        return <Scene.Scene3VRCanvas style={style} />
     } 
     else {
         alert(' No se ha definido la Scene elegida, Scene: ' + id);
