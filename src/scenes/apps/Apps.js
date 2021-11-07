@@ -18,6 +18,9 @@ export default function Apps({ id='scene1', style={position: 'absolute', top: '0
     else if ( id === 'scene2AR' ) {
         return <Scene.Scene2ARCanvas style={style} />
     }
+    else if ( id === 'scene2VR' ) {
+        return <Scene.Scene2VRCanvas style={style} />
+    }
     else if ( id === 'scene3' ) {
         return <Scene.Scene3Canvas style={style} />
     } 

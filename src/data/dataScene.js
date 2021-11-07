@@ -23,6 +23,10 @@ export const dataScene = [
         name: 'Scene 2 AR'
     },
     {
+        id: 'scene2VR',
+        name: 'Scene 2 VR'
+    },
+    {
         id: 'scene3',
         name: 'Scene 3'
     }
