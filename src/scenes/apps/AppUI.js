@@ -85,7 +85,7 @@ function App1() {
     }
   },[handleFullScreen]);
 
-  const [sceneId, setSceneId] = useState('scene3');
+  const [sceneId, setSceneId] = useState('scene1');
 
 
   return (
