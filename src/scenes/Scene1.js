@@ -9,6 +9,7 @@ import { Suspense } from 'react';
 
 import { DefaultXRControllers, ARCanvas, Interactive, VRCanvas } from '@react-three/xr';
 
+import GodCameraControls from './controls/GodCameraControls';
 
 export function Scene1() {
     return (
@@ -28,7 +29,7 @@ export function Scene1Canvas({ style }) {
                 <Scene1/>
             </Suspense>
 
-            <OrbitControls />
+            <GodCameraControls /> 
         </Canvas>
     )
 }
